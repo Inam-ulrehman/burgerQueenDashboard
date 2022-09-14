@@ -1,9 +1,19 @@
-import About from './About'
-import Cart from './Cart'
+import CashOrders from './CashOrders'
 import Contact from './Contact'
 import ErrorPage from './ErrorPage'
-import Home from './Home'
 import LandingPage from './LandingPage'
+import OnlineOrders from './OnlineOrders'
+import Products from './Products'
 import SharedLayout from './SharedLayout'
+import Users from './Users'
 
-export { SharedLayout, LandingPage, ErrorPage, Home, About, Cart, Contact }
+export {
+  SharedLayout,
+  LandingPage,
+  ErrorPage,
+  Contact,
+  CashOrders,
+  OnlineOrders,
+  Users,
+  Products,
+}
