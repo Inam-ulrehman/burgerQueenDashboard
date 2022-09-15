@@ -1,14 +1,10 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import { useSelector } from 'react-redux'
 import CashOrdersBasic from '../components/CashOrdersBasic'
 import { formatDate } from '../utils/helper'
 const CashOrders = () => {
   const { cashorders } = useSelector((state) => state)
-  const [show, setShow] = useState(false)
-  const handleShow = (e) => {
-    console.log(e.target)
-    setShow(!show)
-  }
+
   return (
     <div>
       <CashOrdersBasic />
