@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux'
 import CashOrdersBasic from '../components/CashOrdersBasic'
 import { formatDate } from '../utils/helper'
 const CashOrders = () => {
-  const { cashorders } = useSelector((state) => state)
+  const { cashorders, isLoading } = useSelector((state) => state)
 
+  if (isLoading) {
+    return <div className='loading'></div>
+  }
   return (
     <div>
       <CashOrdersBasic />
@@ -24,7 +27,7 @@ const CashOrders = () => {
                   <img
                     src={order.image}
                     alt='burger'
-                    style={{ width: '300px', height: '300px' }}
+                    style={{ width: '200px' }}
                   />
                 </div>
               )

@@ -32,11 +32,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {navbarData.map((item, index) => (
-          <Link
-            onClick={() => setMobileOpen(!mobileOpen)}
-            to={item.path}
-            key={item.id}
-          >
+          <Link to={item.path} key={item.id}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemText primary={item.title} />
