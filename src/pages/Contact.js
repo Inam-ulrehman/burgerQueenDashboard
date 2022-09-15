@@ -7,6 +7,7 @@ const Contact = () => {
   return (
     <div>
       <ContactBasic />
+      <hr />
       {contact.contactUs.map((item) => {
         return (
           <div key={item._id}>

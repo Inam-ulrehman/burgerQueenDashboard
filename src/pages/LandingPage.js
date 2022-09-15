@@ -1,20 +1,20 @@
 import React from 'react'
 import {
-  CashOrders,
+  CashOrdersBasic,
   ContactBasic,
   OnlineOrders,
-  Users,
   Products,
+  UsersBasic,
 } from '../components'
 
 const LandingPage = () => {
   return (
     <div>
       <ContactBasic />
-      <CashOrders />
+      <UsersBasic />
+      <CashOrdersBasic />
       <OnlineOrders />
       <Products />
-      <Users />
     </div>
   )
 }

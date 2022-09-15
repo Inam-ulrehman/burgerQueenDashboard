@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import { customFetch } from '../../utils/axios'
 
 const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  isLoading: false,
+  users: [],
+  isLoading: true,
+  count: '',
 }
-
+// get contact customers //
+// Trigger - Roots // SharedLayout
 export const userThunk = createAsyncThunk(
   'user/userThunk',
   async (_, thunkAPI) => {
     try {
-      const response = await customFetch.get()
-      console.log('hello Thunk')
+      const response = await customFetch.get('auth/users')
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -35,11 +35,12 @@ const userSlice = createSlice({
       state.isLoading = true
     },
     [userThunk.fulfilled]: (state, { payload }) => {
-      console.log('promise full filled')
+      state.count = payload.count
+      state.users = payload.users
       state.isLoading = false
     },
     [userThunk.rejected]: (state, { payload }) => {
-      console.log('promise rejected')
+      toast.error(`Users : ${payload}`)
       state.isLoading = false
     },
   },
