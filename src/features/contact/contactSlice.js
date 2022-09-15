@@ -9,6 +9,8 @@ const initialState = {
 }
 
 // get contact customers //
+// Trigger - Roots // SharedLayout
+
 export const contactThunk = createAsyncThunk(
   'contact/contactThunk',
   async (_, thunkAPI) => {
@@ -36,6 +38,7 @@ const contactSlice = createSlice({
     },
     [contactThunk.fulfilled]: (state, { payload }) => {
       state.count = payload.count
+      state.contactUs = payload.contactUss
       state.isLoading = false
     },
     [contactThunk.rejected]: (state, { payload }) => {

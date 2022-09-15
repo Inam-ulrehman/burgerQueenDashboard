@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const Contact = () => {
+const ContactBasic = () => {
   const { contact } = useSelector((state) => state)
 
   return (
@@ -11,4 +11,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default ContactBasic

@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   CashOrders,
-  Contact,
+  ContactBasic,
   OnlineOrders,
   Users,
   Products,
@@ -10,7 +10,7 @@ import {
 const LandingPage = () => {
   return (
     <div>
-      <Contact />
+      <ContactBasic />
       <CashOrders />
       <OnlineOrders />
       <Products />
