@@ -3,17 +3,18 @@ import { toast } from 'react-toastify'
 import { customFetch } from '../../utils/axios'
 
 const initialState = {
-  users: [],
-  isLoading: true,
+  productsList: [],
   count: '',
+  isLoading: true,
 }
 // get contact customers //
 // Trigger - Roots // SharedLayout
-export const userThunk = createAsyncThunk(
-  'user/userThunk',
+export const productsThunk = createAsyncThunk(
+  'products/productsThunk',
   async (_, thunkAPI) => {
     try {
-      const response = await customFetch.get('auth/users')
+      const response = await customFetch.get('products/static')
+
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -21,8 +22,8 @@ export const userThunk = createAsyncThunk(
   }
 )
 
-const userSlice = createSlice({
-  name: 'user',
+const productSlice = createSlice({
+  name: 'products',
   initialState,
   reducers: {
     createFunction: (state, { payload }) => {
@@ -30,19 +31,19 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [userThunk.pending]: (state, { payload }) => {
+    [productsThunk.pending]: (state, { payload }) => {
       state.isLoading = true
     },
-    [userThunk.fulfilled]: (state, { payload }) => {
-      state.count = payload.count
-      state.users = payload.users
+    [productsThunk.fulfilled]: (state, { payload }) => {
+      state.productsList = payload.products
+      state.count = payload.nbHits
       state.isLoading = false
     },
-    [userThunk.rejected]: (state, { payload }) => {
-      toast.error(`Users : ${payload}`)
+    [productsThunk.rejected]: (state, { payload }) => {
+      toast.error(`products : ${payload}`)
       state.isLoading = false
     },
   },
 })
-export const { createFunction } = userSlice.actions
-export default userSlice.reducer
+export const { createFunction } = productSlice.actions
+export default productSlice.reducer

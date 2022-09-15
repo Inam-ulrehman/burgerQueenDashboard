@@ -13,9 +13,6 @@ const Users = () => {
           <div key={item._id}>
             <p>Name: {item.name}</p>
             <p>Email: {item.email}</p>
-            <p style={{ maxWidth: '300px', overflowWrap: 'break-word' }}>
-              Password: {item.password}
-            </p>
             <p>Id: {item._id}</p>
             <hr />
           </div>

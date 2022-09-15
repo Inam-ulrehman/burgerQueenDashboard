@@ -2,8 +2,8 @@ import React from 'react'
 import {
   CashOrdersBasic,
   ContactBasic,
-  OnlineOrders,
-  Products,
+  OnlineOrdersBasic,
+  ProductsBasic,
   UsersBasic,
 } from '../components'
 
@@ -13,8 +13,8 @@ const LandingPage = () => {
       <ContactBasic />
       <UsersBasic />
       <CashOrdersBasic />
-      <OnlineOrders />
-      <Products />
+      <OnlineOrdersBasic />
+      <ProductsBasic />
     </div>
   )
 }
