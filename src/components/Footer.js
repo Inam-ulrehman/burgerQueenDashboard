@@ -9,8 +9,5 @@ const Footer = () => {
     </Wrapper>
   )
 }
-const Wrapper = styled.footer`
-  position: fixed;
-  bottom: 0px;
-`
+const Wrapper = styled.footer``
 export default Footer
