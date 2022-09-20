@@ -31,7 +31,7 @@ const OrdersPieChart = () => {
         <span>Online Orders: {onlineorders.count} </span>
         <span>Cash Orders: {cashorders.count}</span>
       </div>
-      <PieChart width={300} height={250}>
+      <PieChart width={300} height={220}>
         <Pie
           className='pie'
           data={data01}
