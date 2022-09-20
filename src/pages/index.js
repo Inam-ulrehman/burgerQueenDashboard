@@ -6,7 +6,7 @@ import OnlineOrders from './OnlineOrders'
 import Products from './Products'
 import SharedLayout from './SharedLayout'
 import Users from './Users'
-
+import Test from './Test'
 export {
   SharedLayout,
   LandingPage,
@@ -16,4 +16,5 @@ export {
   OnlineOrders,
   Users,
   Products,
+  Test,
 }

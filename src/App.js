@@ -12,6 +12,7 @@ import {
   OnlineOrders,
   Users,
   Products,
+  Test,
 } from './pages'
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='onlineOrders' element={<OnlineOrders />} />
           <Route path='users' element={<Users />} />
           <Route path='products' element={<Products />} />
+          <Route path='test' element={<Test />} />
         </Route>
       </Routes>
       <ToastContainer />
