@@ -2,66 +2,69 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { ContactBasic } from '../components'
 import { formatDate } from '../utils/helper'
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 const Contact = () => {
   const { contact } = useSelector((state) => state)
+
+  const handleEdit = (e) => {
+    console.log(e.target)
+    console.log('Edit')
+  }
+  const handleDelete = (e) => {
+    console.log(e.target)
+    console.log('Delete')
+  }
+  const handleRead = (e) => {
+    console.log(e.target)
+    console.log('Read')
+  }
   return (
     <Wrapper>
       <ContactBasic />
-      <div>
+      <div className='tableHolder'>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Message</th>
-            <th>Time</th>
-            <th>Icons</th>
-          </tr>
-          {contact.contactUs.map((item) => {
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Time</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          {contact.contactUs.map((item, index) => {
             return (
-              <tr key={item._id}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.message}</td>
-                <td>{formatDate(item.createdAt)}</td>
-                <td>Icons</td>
-              </tr>
+              <tbody key={item._id}>
+                <tr>
+                  <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.message}</td>
+                  <td>{formatDate(item.createdAt)}</td>
+                  <td className='icons'>
+                    <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
+                    <DeleteOutlineOutlinedIcon
+                      onClick={(e) => handleDelete(e)}
+                    />
+                    <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
+                  </td>
+                </tr>
+              </tbody>
             )
           })}
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Message</td>
-            <td>Time</td>
-            <td>Icons</td>
-          </tr>
         </table>
       </div>
-      <hr />
     </Wrapper>
   )
 }
 const Wrapper = styled.div`
-  table {
-    width: 100%;
-  }
-  table,
-  tr,
-  th,
-  td {
-    border: 2px solid black;
-    border-collapse: inherit;
-    border-collapse: collapse;
+  .icons {
+    svg:hover {
+      cursor: pointer;
+    }
   }
 `
 export default Contact
-
-// <p>Name: {item.name}</p>
-//               <p>Last Name: {item.lastName}</p>
-//               <p>Email: {item.email}</p>
-//               <p>Message: {item.message}</p>
-//               <p>Mobile No: {item.mobile}</p>
-//               <p style={{ maxWidth: '300px', overflowWrap: 'break-word' }}>
-//                 Message Details: {item.details}
-//               </p>
-//               <p>Created Date: {formatDate(item.createdAt)}</p>

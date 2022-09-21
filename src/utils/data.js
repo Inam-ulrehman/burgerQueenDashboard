@@ -1,3 +1,4 @@
+// ===Navbar Data===
 export const navbarData = [
   { id: 1, path: '/', title: 'Home' },
   { id: 4, path: '/contact', title: 'Contact' },
@@ -7,3 +8,5 @@ export const navbarData = [
   { id: 6, path: '/products', title: 'Store Products' },
   { id: 7, path: '/test', title: 'test' },
 ]
+
+// ===Icons Crud Data===

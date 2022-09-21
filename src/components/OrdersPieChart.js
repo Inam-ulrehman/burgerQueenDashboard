@@ -17,7 +17,7 @@ const OrdersPieChart = () => {
     { name: `Cash Order's`, value: onlineorders.count },
   ]
   const handlePie = (e) => {
-    if (e === 'Cash') {
+    if (e === `Cash Order's`) {
       navigate('/cashorders')
       return
     } else {

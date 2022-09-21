@@ -106,6 +106,20 @@ ul {
 .btn-container {
   text-align: center;
 }
+/* table css */
+.tableHolder {
+  overflow-wrap: anywhere;
+}
+table {
+  width: 100%;
+}
+table,
+tr,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
 
 /* alerts */
 .alert {

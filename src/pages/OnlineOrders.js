@@ -2,45 +2,59 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { OnlineOrdersBasic } from '../components'
 import { formatDate, formatPrice } from '../utils/helper'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 const OnlineOrders = () => {
   const { onlineorders } = useSelector((state) => state)
+
+  const handleEdit = (e) => {
+    console.log(e.target)
+    console.log('Edit')
+  }
+  const handleDelete = (e) => {
+    console.log(e.target)
+    console.log('Delete')
+  }
+  const handleRead = (e) => {
+    console.log(e.target)
+    console.log('Read')
+  }
   return (
-    <div>
+    <div className='tableHolder'>
       <OnlineOrdersBasic />
-      <hr />
-      {onlineorders.orders.map((item) => {
-        return (
-          <div key={item._id}>
-            <p>Created At: {formatDate(item.createdAt)}</p>
-            <p>Name: {item.name}</p>
-            <p>Total: {formatPrice(item.total)}</p>
-            {item.cart.map((order) => {
-              return (
-                <div key={order._id}>
-                  <span style={{ display: 'block' }}>
-                    Category: {order.category}
-                  </span>
-                  <span>Name: {order.name}</span>
-                  <div>
-                    <img
-                      style={{ width: '300px' }}
-                      src={order.image}
-                      alt='burger'
-                    />
-                  </div>
-                  <p
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
-                  >
-                    <span>price: {formatPrice(order.price)}</span>
-                    <span>Amount: {order.total}</span>
-                  </p>
-                </div>
-              )
-            })}
-            <hr />
-          </div>
-        )
-      })}
+      <table>
+        <thead>
+          <tr>
+            <td>Number</td>
+            <td>Name</td>
+            <td>Order Id</td>
+            <td>Created At</td>
+            <td>Total Bill</td>
+            <td>Payment Status</td>
+            <td>Icons</td>
+          </tr>
+        </thead>
+        {onlineorders.orders.map((item, index) => {
+          return (
+            <tbody key={item._id}>
+              <tr>
+                <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>{item._id}</td>
+                <td>{formatDate(item.createdAt)}</td>
+                <td>{formatPrice(item.total)}</td>
+                <td>{item.redirect_status}</td>
+                <td className='icons'>
+                  <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
+                  <DeleteOutlineOutlinedIcon onClick={(e) => handleDelete(e)} />
+                  <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
+                </td>
+              </tr>
+            </tbody>
+          )
+        })}
+      </table>
     </div>
   )
 }
