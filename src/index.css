@@ -228,6 +228,13 @@ td {
 .active {
   color: var(--primary-5);
 }
+
+/* icons */
+
+svg:hover {
+  cursor: pointer;
+}
+
 .hero-image {
   /* background-image: url('../src/images/hero.jpg'); */
   background-color: #cccccc;

@@ -60,11 +60,5 @@ const Contact = () => {
     </Wrapper>
   )
 }
-const Wrapper = styled.div`
-  .icons {
-    svg:hover {
-      cursor: pointer;
-    }
-  }
-`
+const Wrapper = styled.div``
 export default Contact
