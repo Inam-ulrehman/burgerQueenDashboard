@@ -1,31 +1,33 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import UsersBasic from '../components/UsersBasic'
 import { formatDate } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import AlertDialog from '../components/Cards/AlertDialog'
+import { deleteUserThunk } from '../features/user/userSlice'
 
 const Users = () => {
   const { user } = useSelector((state) => state)
+  const dispatch = useDispatch()
 
   const handleEdit = (e) => {
-    console.log(e.target)
-    console.log('Edit')
+    console.log(e)
   }
-  const handleDelete = (e) => {
-    console.log(e.target)
-    console.log('Delete')
+  const handleDelete = (id) => {
+    dispatch(deleteUserThunk(id))
   }
   const handleRead = (e) => {
-    console.log(e.target)
-    console.log('Read')
+    console.log(e)
   }
   return (
     <Wrapper className='tableHolder'>
       <UsersBasic />
+
       <hr />
+
       <table>
         <thead>
           <tr>
@@ -39,6 +41,7 @@ const Users = () => {
           </tr>
         </thead>
         {user.users.map((item, index) => {
+          const { _id } = item
           return (
             <tbody key={item._id}>
               <tr>
@@ -49,9 +52,18 @@ const Users = () => {
                 <td>{formatDate(item.createdAt)}</td>
                 <td>{formatDate(item.updatedAt)}</td>
                 <td className='icons'>
-                  <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
-                  <DeleteOutlineOutlinedIcon onClick={(e) => handleDelete(e)} />
-                  <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
+                  <EditOutlinedIcon onClick={() => handleEdit(_id)} />
+                  <DeleteOutlineOutlinedIcon
+                    onClick={() => handleDelete(_id)}
+                  />
+                  <AlertDialog
+                    content={'Do you really want to delete ?'}
+                    title={'Alert'}
+                    buttonText={<DeleteOutlineOutlinedIcon />}
+                    // action={}
+                  />
+
+                  <InfoOutlinedIcon onClick={() => handleRead(_id)} />
                 </td>
               </tr>
             </tbody>

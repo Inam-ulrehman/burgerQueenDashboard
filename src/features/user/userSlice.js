@@ -21,6 +21,22 @@ export const userThunk = createAsyncThunk(
   }
 )
 
+// Delete User
+export const deleteUserThunk = createAsyncThunk(
+  'user/deleteUserThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await customFetch.delete(`auth/users/${id}`)
+
+      thunkAPI.dispatch(userThunk())
+      return response.data.msg
+    } catch (error) {
+      console.log(error.response)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -30,6 +46,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    // =====Get User=======
     [userThunk.pending]: (state, { payload }) => {
       state.isLoading = true
     },
@@ -40,6 +57,20 @@ const userSlice = createSlice({
     },
     [userThunk.rejected]: (state, { payload }) => {
       toast.error(`Users : ${payload}`)
+
+      state.isLoading = false
+    },
+    // ====delete User=====
+    [deleteUserThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [deleteUserThunk.fulfilled]: (state, { payload }) => {
+      toast.success(payload)
+
+      state.isLoading = false
+    },
+    [deleteUserThunk.rejected]: (state, { payload }) => {
+      toast.error(` ${payload}`)
       state.isLoading = false
     },
   },
