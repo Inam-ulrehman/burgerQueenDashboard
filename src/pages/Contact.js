@@ -1,21 +1,21 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { ContactBasic } from '../components'
 import { formatDate } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import AlertDialog from '../components/Cards/AlertDialog'
+import { deleteContactUsThunk } from '../features/contact/contactSlice'
 const Contact = () => {
   const { contact } = useSelector((state) => state)
+  const dispatch = useDispatch()
 
   const handleEdit = (e) => {
     console.log(e.target)
     console.log('Edit')
   }
-  const handleDelete = (e) => {
-    console.log(e.target)
-    console.log('Delete')
-  }
+
   const handleRead = (e) => {
     console.log(e.target)
     console.log('Read')
@@ -46,8 +46,11 @@ const Contact = () => {
                   <td>{formatDate(item.createdAt)}</td>
                   <td className='icons'>
                     <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
-                    <DeleteOutlineOutlinedIcon
-                      onClick={(e) => handleDelete(e)}
+                    <AlertDialog
+                      content={'Do you really want to delete ?'}
+                      title={'Alert'}
+                      buttonText={<DeleteOutlineOutlinedIcon />}
+                      action={() => dispatch(deleteContactUsThunk(item._id))}
                     />
                     <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
                   </td>

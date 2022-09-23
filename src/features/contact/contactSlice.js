@@ -23,6 +23,20 @@ export const contactThunk = createAsyncThunk(
     }
   }
 )
+// ===Delete ContactUs===
+export const deleteContactUsThunk = createAsyncThunk(
+  'contact/deleteContactUsThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await customFetch.delete(`/contactus/${id}`)
+
+      thunkAPI.dispatch(contactThunk())
+      return response.data.msg
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
 
 const contactSlice = createSlice({
   name: 'contact',
@@ -45,6 +59,18 @@ const contactSlice = createSlice({
       toast.error(`ContactUS: ${payload}`)
       state.isLoading = false
     },
+  },
+  // ====Delete contact=====
+  [deleteContactUsThunk.pending]: (state, { payload }) => {
+    state.isLoading = true
+  },
+  [deleteContactUsThunk.fulfilled]: (state, { payload }) => {
+    toast.success(payload)
+    state.isLoading = false
+  },
+  [deleteContactUsThunk.rejected]: (state, { payload }) => {
+    toast.error(payload)
+    state.isLoading = false
   },
 })
 export const { createFunction } = contactSlice.actions

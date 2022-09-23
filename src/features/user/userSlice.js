@@ -21,7 +21,7 @@ export const userThunk = createAsyncThunk(
   }
 )
 
-// Delete User
+// ===Delete User===
 export const deleteUserThunk = createAsyncThunk(
   'user/deleteUserThunk',
   async (id, thunkAPI) => {
@@ -31,7 +31,6 @@ export const deleteUserThunk = createAsyncThunk(
       thunkAPI.dispatch(userThunk())
       return response.data.msg
     } catch (error) {
-      console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
@@ -66,11 +65,10 @@ const userSlice = createSlice({
     },
     [deleteUserThunk.fulfilled]: (state, { payload }) => {
       toast.success(payload)
-
       state.isLoading = false
     },
     [deleteUserThunk.rejected]: (state, { payload }) => {
-      toast.error(` ${payload}`)
+      toast.error(payload)
       state.isLoading = false
     },
   },

@@ -20,6 +20,23 @@ export const onlineordersThunk = createAsyncThunk(
   }
 )
 
+// ===Delete OnlineOrder===
+export const deleteOnlineOrderThunk = createAsyncThunk(
+  'onlneorders/deleteOnlineOrderThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await customFetch.delete(`onlineorders/${id}`)
+
+      thunkAPI.dispatch(onlineordersThunk())
+      console.log(response)
+      return response.data.msg
+    } catch (error) {
+      console.log(error.response)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+
 const onlineordersSlice = createSlice({
   name: 'onlineorders',
   initialState,
@@ -39,6 +56,18 @@ const onlineordersSlice = createSlice({
     },
     [onlineordersThunk.rejected]: (state, { payload }) => {
       toast.error(`Cash Orders: ${payload}`)
+      state.isLoading = false
+    },
+    // ====delete OnlineOrder=====
+    [deleteOnlineOrderThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [deleteOnlineOrderThunk.fulfilled]: (state, { payload }) => {
+      toast.success(payload)
+      state.isLoading = false
+    },
+    [deleteOnlineOrderThunk.rejected]: (state, { payload }) => {
+      toast.error(payload)
       state.isLoading = false
     },
   },

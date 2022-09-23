@@ -1,21 +1,21 @@
 import { React } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CashOrdersBasic from '../components/CashOrdersBasic'
 import { formatDate } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import AlertDialog from '../components/Cards/AlertDialog'
+import { deleteCashOrderThunk } from '../features/cashorders/cashordersSlice'
 const CashOrders = () => {
+  const dispatch = useDispatch()
   const { cashorders, isLoading } = useSelector((state) => state)
 
   const handleEdit = (e) => {
     console.log(e.target)
     console.log('Edit')
   }
-  const handleDelete = (e) => {
-    console.log(e.target)
-    console.log('Delete')
-  }
+
   const handleRead = (e) => {
     console.log(e.target)
     console.log('Read')
@@ -49,7 +49,12 @@ const CashOrders = () => {
                 <td>Pending</td>
                 <td className='icons'>
                   <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
-                  <DeleteOutlineOutlinedIcon onClick={(e) => handleDelete(e)} />
+                  <AlertDialog
+                    content={'Do you really want to delete ?'}
+                    title={'Alert'}
+                    buttonText={<DeleteOutlineOutlinedIcon />}
+                    action={() => dispatch(deleteCashOrderThunk(item._id))}
+                  />
                   <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
                 </td>
               </tr>

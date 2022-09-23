@@ -16,9 +16,6 @@ const Users = () => {
   const handleEdit = (e) => {
     console.log(e)
   }
-  const handleDelete = (id) => {
-    dispatch(deleteUserThunk(id))
-  }
   const handleRead = (e) => {
     console.log(e)
   }
@@ -53,14 +50,12 @@ const Users = () => {
                 <td>{formatDate(item.updatedAt)}</td>
                 <td className='icons'>
                   <EditOutlinedIcon onClick={() => handleEdit(_id)} />
-                  <DeleteOutlineOutlinedIcon
-                    onClick={() => handleDelete(_id)}
-                  />
+
                   <AlertDialog
                     content={'Do you really want to delete ?'}
                     title={'Alert'}
                     buttonText={<DeleteOutlineOutlinedIcon />}
-                    // action={}
+                    action={() => dispatch(deleteUserThunk(_id))}
                   />
 
                   <InfoOutlinedIcon onClick={() => handleRead(_id)} />
