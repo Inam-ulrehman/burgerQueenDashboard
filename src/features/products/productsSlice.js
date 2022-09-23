@@ -30,10 +30,9 @@ export const deleteProductThunk = createAsyncThunk(
       const response = await customFetch.delete(`products/${id}`)
 
       thunkAPI.dispatch(productsThunk())
-      console.log(response)
+
       return response.data.msg
     } catch (error) {
-      console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
