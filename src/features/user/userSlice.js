@@ -4,6 +4,7 @@ import { customFetch } from '../../utils/axios'
 
 const initialState = {
   users: [],
+  singleUser: [],
   isLoading: true,
   count: '',
 }
@@ -31,6 +32,19 @@ export const deleteUserThunk = createAsyncThunk(
       thunkAPI.dispatch(userThunk())
       return response.data.msg
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+// ===Get Single User===
+export const getSingleUserThunk = createAsyncThunk(
+  'user/getSingleUserThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await customFetch.post(`auth/users/${id}`)
+      return response.data.user
+    } catch (error) {
+      console.log(error.response.data)
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
@@ -68,6 +82,21 @@ const userSlice = createSlice({
       state.isLoading = false
     },
     [deleteUserThunk.rejected]: (state, { payload }) => {
+      toast.error(payload)
+
+      state.isLoading = false
+    },
+    // ====get Single User=====
+    [getSingleUserThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [getSingleUserThunk.fulfilled]: (state, { payload }) => {
+      state.singleUser = [payload]
+      toast.success(payload)
+      state.isLoading = false
+    },
+    [getSingleUserThunk.rejected]: (state, { payload }) => {
+      console.log(payload)
       toast.error(payload)
       state.isLoading = false
     },

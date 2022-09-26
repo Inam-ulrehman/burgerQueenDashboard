@@ -13,6 +13,7 @@ import {
   Users,
   Products,
   Test,
+  SingleUser,
 } from './pages'
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='cashOrders' element={<CashOrders />} />
           <Route path='onlineOrders' element={<OnlineOrders />} />
           <Route path='users' element={<Users />} />
+          <Route path='users/:id' element={<SingleUser />} />
           <Route path='products' element={<Products />} />
           <Route path='test' element={<Test />} />
         </Route>

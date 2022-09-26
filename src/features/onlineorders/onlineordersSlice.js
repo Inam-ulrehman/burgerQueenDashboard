@@ -50,7 +50,7 @@ const onlineordersSlice = createSlice({
       state.isLoading = true
     },
     [onlineordersThunk.fulfilled]: (state, { payload }) => {
-      state.orders = payload.stripes
+      state.orders = payload.allOnlineOrders
       state.count = payload.count
       state.isLoading = false
     },

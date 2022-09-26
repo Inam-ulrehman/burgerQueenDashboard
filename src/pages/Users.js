@@ -8,23 +8,23 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import AlertDialog from '../components/Cards/AlertDialog'
 import { deleteUserThunk } from '../features/user/userSlice'
+import ReadUser from '../components/Users/ReadUser'
+import { Link } from 'react-router-dom'
 
 const Users = () => {
   const { user } = useSelector((state) => state)
+
   const dispatch = useDispatch()
 
   const handleEdit = (e) => {
     console.log(e)
   }
-  const handleRead = (e) => {
-    console.log(e)
-  }
+
   return (
     <Wrapper className='tableHolder'>
+      <ReadUser />
       <UsersBasic />
-
       <hr />
-
       <table>
         <thead>
           <tr>
@@ -57,8 +57,9 @@ const Users = () => {
                     buttonText={<DeleteOutlineOutlinedIcon />}
                     action={() => dispatch(deleteUserThunk(_id))}
                   />
-
-                  <InfoOutlinedIcon onClick={() => handleRead(_id)} />
+                  <Link to={`/users/${_id}`}>
+                    <InfoOutlinedIcon />
+                  </Link>
                 </td>
               </tr>
             </tbody>

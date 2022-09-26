@@ -7,6 +7,7 @@ import Products from './Products'
 import SharedLayout from './SharedLayout'
 import Users from './Users'
 import Test from './Test'
+import SingleUser from './SingleUser'
 export {
   SharedLayout,
   LandingPage,
@@ -17,4 +18,5 @@ export {
   Users,
   Products,
   Test,
+  SingleUser,
 }
