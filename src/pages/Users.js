@@ -8,7 +8,6 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import AlertDialog from '../components/Cards/AlertDialog'
 import { deleteUserThunk } from '../features/user/userSlice'
-import ReadUser from '../components/Users/ReadUser'
 import { Link } from 'react-router-dom'
 
 const Users = () => {
@@ -22,7 +21,6 @@ const Users = () => {
 
   return (
     <Wrapper className='tableHolder'>
-      <ReadUser />
       <UsersBasic />
       <hr />
       <table>

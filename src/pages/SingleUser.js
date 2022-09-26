@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -17,8 +17,6 @@ const SingleUser = () => {
   const handleChange = (e) => {
     console.log(e.target.name)
     console.log(e.target.value)
-    const name = e.target.name
-    const value = e.target.value
   }
 
   useEffect(() => {
