@@ -2,21 +2,40 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getSingleUserThunk } from '../features/user/userSlice'
+import {
+  getSingleUserThunk,
+  getSingleUserValue,
+  handleVerified,
+  handleRoleAdmin,
+  updateSingleUserThunk,
+} from '../features/user/userSlice'
 import { formatDate } from '../utils/helper'
 
 const SingleUser = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { isLoading, singleUser } = useSelector((state) => state.user)
+  const { isLoading, singleUser, singleUserUpdate } = useSelector(
+    (state) => state.user
+  )
+  const { name } = singleUserUpdate
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target)
+
+    dispatch(updateSingleUserThunk(singleUserUpdate))
   }
   const handleChange = (e) => {
-    console.log(e.target.name)
-    console.log(e.target.value)
+    const name = e.target.name
+    const value = e.target.value
+    console.log(name, value)
+    dispatch(getSingleUserValue({ name, value }))
+  }
+
+  const handleVerifiedButton = (e) => {
+    dispatch(handleVerified())
+  }
+  const handleAdminButton = (e) => {
+    dispatch(handleRoleAdmin())
   }
 
   useEffect(() => {
@@ -35,32 +54,25 @@ const SingleUser = () => {
 
   return (
     <form className='form' onSubmit={handleSubmit}>
+      {/* verified */}
       <div>
         <label className='form-label' htmlFor='verified'>
-          verified
+          {singleUserUpdate.verified ? 'Verified' : 'Not Verified'}
         </label>
-        <input
-          className='form-input'
-          type='text'
-          id='verified'
-          name='verified'
-          value={'hello'}
-          onChange={handleChange}
-        />
+        <button type='button' onClick={handleVerifiedButton}>
+          Change Status
+        </button>
       </div>
+      {/* roleAdmin */}
       <div>
         <label className='form-label' htmlFor='roleAdmin'>
-          roleAdmin
+          {singleUserUpdate.roleAdmin ? 'Admin' : 'Member'}
         </label>
-        <input
-          className='form-input'
-          type='text'
-          id='roleAdmin'
-          name='roleAdmin'
-          value={'hello'}
-          onChange={handleChange}
-        />
+        <button type='button' onClick={handleAdminButton}>
+          Change Status
+        </button>
       </div>
+      {/* Id */}
       <div>
         <label className='form-label' htmlFor='_id'>
           Id
@@ -71,10 +83,11 @@ const SingleUser = () => {
           type='text'
           id='_id'
           name='_id'
-          value={'hello'}
+          value={singleUserUpdate._id}
           onChange={handleChange}
         />
       </div>
+      {/* Name */}
       <div>
         <label className='form-label' htmlFor='name'>
           Name
@@ -84,10 +97,11 @@ const SingleUser = () => {
           type='text'
           id='name'
           name='name'
-          value={'hello'}
+          value={name}
           onChange={handleChange}
         />
       </div>
+      {/* Email */}
       <div>
         <label className='form-label' htmlFor='email'>
           Email
@@ -97,10 +111,11 @@ const SingleUser = () => {
           type='text'
           id='email'
           name='email'
-          value={'hello'}
+          value={singleUserUpdate.email}
           onChange={handleChange}
         />
       </div>
+      {/* password */}
       <div>
         <label className='form-label' htmlFor='password'>
           Password
@@ -110,7 +125,7 @@ const SingleUser = () => {
           type='text'
           id='password'
           name='password'
-          value={'hello'}
+          value={singleUserUpdate.password}
           onChange={handleChange}
         />
       </div>
@@ -118,8 +133,8 @@ const SingleUser = () => {
         Update
       </button>
       <div>
-        <p>{formatDate(singleUser.createdAt)}</p>
-        <p>{formatDate(singleUser.updatedAt)}</p>
+        <p>{formatDate(singleUserUpdate.createdAt)}</p>
+        <p>{formatDate(singleUserUpdate.updatedAt)}</p>
       </div>
     </form>
   )

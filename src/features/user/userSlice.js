@@ -5,6 +5,17 @@ import { customFetch } from '../../utils/axios'
 const initialState = {
   users: [],
   singleUser: [],
+  singleUserUpdate: {
+    verified: '',
+    roleAdmin: '',
+    _id: '',
+    name: '',
+    email: '',
+    password: '',
+    createdAt: '',
+    updatedAt: '',
+  },
+
   isLoading: true,
   count: '',
 }
@@ -49,6 +60,25 @@ export const getSingleUserThunk = createAsyncThunk(
     }
   }
 )
+// ===Update Single User===
+export const updateSingleUserThunk = createAsyncThunk(
+  'user/updateSingleUserThunk',
+  async (user, thunkAPI) => {
+    // console.log(user)
+    try {
+      console.log(user._id)
+      const response = await customFetch.patch(`/auth/users/${user._id}`, user)
+
+      // const response = await customFetch.post(`auth/users/${user._id}`, user)
+
+      console.log(response)
+      return response.data.user
+    } catch (error) {
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
 
 const userSlice = createSlice({
   name: 'user',
@@ -56,6 +86,19 @@ const userSlice = createSlice({
   reducers: {
     createFunction: (state, { payload }) => {
       console.log('function call')
+    }, // root -> user/:id -> pages>SingleUserPage
+
+    // root -> user/:id -> pages>SingleUserPage
+    getSingleUserValue: (state, { payload }) => {
+      const { name, value } = payload
+      state.singleUserUpdate = { ...state.singleUserUpdate, [name]: value }
+    },
+    // root -> user/:id -> pages>SingleUserPage
+    handleVerified: (state, { payload }) => {
+      state.singleUserUpdate.verified = !state.singleUserUpdate.verified
+    },
+    handleRoleAdmin: (state, { payload }) => {
+      state.singleUserUpdate.roleAdmin = !state.singleUserUpdate.roleAdmin
     },
   },
   extraReducers: {
@@ -92,15 +135,39 @@ const userSlice = createSlice({
     },
     [getSingleUserThunk.fulfilled]: (state, { payload }) => {
       state.singleUser = [payload]
-      toast.success(payload)
+
+      state.singleUserUpdate.name = payload.name
+      state.singleUserUpdate.verified = payload.verified
+      state.singleUserUpdate.roleAdmin = payload.roleAdmin
+      state.singleUserUpdate.email = payload.email
+      state.singleUserUpdate.password = payload.password
+      state.singleUserUpdate._id = payload._id
+      state.singleUserUpdate.createdAt = payload.createdAt
+      state.singleUserUpdate.updatedAt = payload.updatedAt
       state.isLoading = false
     },
     [getSingleUserThunk.rejected]: (state, { payload }) => {
-      console.log(payload)
+      toast.error(payload)
+      state.isLoading = false
+    },
+    // ====updateSingle User=====
+    [updateSingleUserThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [updateSingleUserThunk.fulfilled]: (state, { payload }) => {
+      state.isLoading = false
+    },
+    [updateSingleUserThunk.rejected]: (state, { payload }) => {
       toast.error(payload)
       state.isLoading = false
     },
   },
 })
-export const { createFunction } = userSlice.actions
+export const {
+  createFunction,
+  getSingleUserValue,
+  getSingleUserUpdateVerified,
+  handleVerified,
+  handleRoleAdmin,
+} = userSlice.actions
 export default userSlice.reducer
