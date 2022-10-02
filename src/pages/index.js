@@ -8,7 +8,9 @@ import SharedLayout from './SharedLayout'
 import Users from './Users'
 import Test from './Test'
 import SingleUser from './SingleUser'
+import SingleContact from './SingleContact'
 export {
+  SingleContact,
   SharedLayout,
   LandingPage,
   ErrorPage,

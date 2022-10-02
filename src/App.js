@@ -8,12 +8,13 @@ import {
   LandingPage,
   ErrorPage,
   Contact,
+  SingleContact,
   CashOrders,
   OnlineOrders,
   Users,
+  SingleUser,
   Products,
   Test,
-  SingleUser,
 } from './pages'
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route index element={<LandingPage />} />
           <Route path='*' element={<ErrorPage />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='contact/:id' element={<SingleContact />} />
           <Route path='cashOrders' element={<CashOrders />} />
           <Route path='onlineOrders' element={<OnlineOrders />} />
           <Route path='users' element={<Users />} />
