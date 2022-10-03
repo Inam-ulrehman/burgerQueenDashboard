@@ -16,6 +16,8 @@ import {
   Products,
   Test,
   SingleCashOrder,
+  SingleProduct,
+  SingleOnlineOrder,
 } from './pages'
 
 const App = () => {
@@ -37,9 +39,11 @@ const App = () => {
           <Route path='cashOrders' element={<CashOrders />} />
           <Route path='cashOrders/:id' element={<SingleCashOrder />} />
           <Route path='onlineOrders' element={<OnlineOrders />} />
+          <Route path='onlineOrders/:id' element={<SingleOnlineOrder />} />
           <Route path='users' element={<Users />} />
           <Route path='users/:id' element={<SingleUser />} />
           <Route path='products' element={<Products />} />
+          <Route path='products/:id' element={<SingleProduct />} />
           <Route path='test' element={<Test />} />
         </Route>
       </Routes>

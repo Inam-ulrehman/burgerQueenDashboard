@@ -37,6 +37,17 @@ export const deleteProductThunk = createAsyncThunk(
     }
   }
 )
+// ===get Single Product===
+export const getSingleProductThunk = createAsyncThunk(
+  'products/getSingleProductThunk',
+  async (id, thunkAPI) => {
+    try {
+      console.log('ThunkApi')
+    } catch (error) {
+      console.log('Error')
+    }
+  }
+)
 
 const productSlice = createSlice({
   name: 'products',
@@ -69,6 +80,16 @@ const productSlice = createSlice({
     },
     [deleteProductThunk.rejected]: (state, { payload }) => {
       toast.error(payload)
+      state.isLoading = false
+    },
+    // ====get Single Product=====
+    [getSingleProductThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [getSingleProductThunk.fulfilled]: (state, { payload }) => {
+      state.isLoading = false
+    },
+    [getSingleProductThunk.rejected]: (state, { payload }) => {
       state.isLoading = false
     },
   },

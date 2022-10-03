@@ -6,20 +6,20 @@ import AlertDialog from '../components/Cards/AlertDialog'
 
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import { deleteOnlineOrderThunk } from '../features/onlineorders/onlineordersSlice'
+import { Link } from 'react-router-dom'
 const OnlineOrders = () => {
   const { onlineorders } = useSelector((state) => state)
   const dispatch = useDispatch()
 
-  const handleEdit = (e) => {
-    console.log(e.target)
-    console.log('Edit')
-  }
-
-  const handleRead = (e) => {
-    console.log(e.target)
-    console.log('Read')
+  if (onlineorders.isLoading) {
+    return (
+      <div>
+        <h1 className='title'>
+          <div className='loading'></div>
+        </h1>
+      </div>
+    )
   }
   return (
     <div className='tableHolder'>
@@ -47,14 +47,15 @@ const OnlineOrders = () => {
                 <td>{formatPrice(item.total)}</td>
                 <td>{item.redirect_status}</td>
                 <td className='icons'>
-                  <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
                   <AlertDialog
                     content={'Do you really want to delete ?'}
                     title={'Alert'}
                     buttonText={<DeleteOutlineOutlinedIcon />}
                     action={() => dispatch(deleteOnlineOrderThunk(item._id))}
                   />
-                  <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
+                  <Link to={`/onlineorders/${item._id}`}>
+                    <EditOutlinedIcon />
+                  </Link>
                 </td>
               </tr>
             </tbody>

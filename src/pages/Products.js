@@ -4,22 +4,13 @@ import { ProductsBasic } from '../components'
 import { formatPrice } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import AlertDialog from '../components/Cards/AlertDialog'
 import { deleteProductThunk } from '../features/products/productsSlice'
+import { Link } from 'react-router-dom'
 const Products = () => {
   const { products } = useSelector((state) => state)
   const dispatch = useDispatch()
 
-  const handleEdit = (e) => {
-    console.log(e.target)
-    console.log('Edit')
-  }
-
-  const handleRead = (e) => {
-    console.log(e.target)
-    console.log('Read')
-  }
   return (
     <div className='tableHolder'>
       <ProductsBasic />
@@ -51,14 +42,15 @@ const Products = () => {
                 <td>{item.category}</td>
                 <td>{formatPrice(item.price)}</td>
                 <td className='icons'>
-                  <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
                   <AlertDialog
                     content={'Do you really want to delete ?'}
                     title={'Alert'}
                     buttonText={<DeleteOutlineOutlinedIcon />}
                     action={() => dispatch(deleteProductThunk(item._id))}
                   />
-                  <InfoOutlinedIcon onClick={(e) => handleRead(e)} />
+                  <Link to={`/products/${item._id}`}>
+                    <EditOutlinedIcon />
+                  </Link>
                 </td>
               </tr>
             </tbody>

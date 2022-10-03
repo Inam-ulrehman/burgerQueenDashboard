@@ -22,7 +22,7 @@ export const onlineordersThunk = createAsyncThunk(
 
 // ===Delete OnlineOrder===
 export const deleteOnlineOrderThunk = createAsyncThunk(
-  'onlneorders/deleteOnlineOrderThunk',
+  'onlineorders/deleteOnlineOrderThunk',
   async (id, thunkAPI) => {
     try {
       const response = await customFetch.delete(`onlineorders/${id}`)
@@ -30,6 +30,22 @@ export const deleteOnlineOrderThunk = createAsyncThunk(
       thunkAPI.dispatch(onlineordersThunk())
       console.log(response)
       return response.data.msg
+    } catch (error) {
+      console.log(error.response)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+// ===Get Single OnlineOrder===
+export const getSingleOnlineOrderThunk = createAsyncThunk(
+  'onlineorders/getSingleOnlineOrderThunk',
+  async (id, thunkAPI) => {
+    try {
+      console.log('thunkApi')
+      // const response = await customFetch.get(`onlineorders/${id}`)
+
+      // console.log(response)
+      // return response.data.msg
     } catch (error) {
       console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -67,6 +83,17 @@ const onlineordersSlice = createSlice({
       state.isLoading = false
     },
     [deleteOnlineOrderThunk.rejected]: (state, { payload }) => {
+      toast.error(payload)
+      state.isLoading = false
+    },
+    // ====get Single OnlineOrder=====
+    [getSingleOnlineOrderThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [getSingleOnlineOrderThunk.fulfilled]: (state, { payload }) => {
+      state.isLoading = false
+    },
+    [getSingleOnlineOrderThunk.rejected]: (state, { payload }) => {
       toast.error(payload)
       state.isLoading = false
     },

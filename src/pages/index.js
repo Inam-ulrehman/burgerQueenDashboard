@@ -10,6 +10,8 @@ import Test from './Test'
 import SingleUser from './SingleUser'
 import SingleContact from './SingleContact'
 import SingleCashOrder from './SingleCashOrder'
+import SingleProduct from './SingleProduct'
+import SingleOnlineOrder from './SingleOnlineOrder'
 export {
   SingleCashOrder,
   SingleContact,
@@ -19,8 +21,10 @@ export {
   Contact,
   CashOrders,
   OnlineOrders,
+  SingleOnlineOrder,
   Users,
   Products,
+  SingleProduct,
   Test,
   SingleUser,
 }
