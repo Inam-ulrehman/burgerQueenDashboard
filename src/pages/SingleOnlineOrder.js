@@ -8,6 +8,7 @@ const SingleOnlineOrder = () => {
 
   useEffect(() => {
     dispatch(getSingleOnlineOrderThunk())
+    // eslint-disable-next-line
   }, [])
   if (isLoading) {
     return (

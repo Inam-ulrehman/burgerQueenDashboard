@@ -9,7 +9,7 @@ const SingleProduct = () => {
   const { isLoading } = useSelector((state) => state.products)
   console.log(isLoading)
   useEffect(() => {
-    dispatch(getSingleProductThunk())
+    dispatch(getSingleProductThunk(id))
     // eslint-disable-next-line
   }, [])
   if (isLoading) {
