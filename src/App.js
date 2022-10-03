@@ -15,6 +15,7 @@ import {
   SingleUser,
   Products,
   Test,
+  SingleCashOrder,
 } from './pages'
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='contact' element={<Contact />} />
           <Route path='contact/:id' element={<SingleContact />} />
           <Route path='cashOrders' element={<CashOrders />} />
+          <Route path='cashOrders/:id' element={<SingleCashOrder />} />
           <Route path='onlineOrders' element={<OnlineOrders />} />
           <Route path='users' element={<Users />} />
           <Route path='users/:id' element={<SingleUser />} />

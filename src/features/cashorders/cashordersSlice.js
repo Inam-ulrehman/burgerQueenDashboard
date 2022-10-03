@@ -3,6 +3,7 @@ import { customFetch } from '../../utils/axios'
 import { toast } from 'react-toastify'
 const initialState = {
   cashOrders: [],
+  SingleCashOrder: [],
   count: '',
   isLoading: true,
 }
@@ -21,9 +22,9 @@ export const cashordersThunk = createAsyncThunk(
   }
 )
 
-// Delete User
+// Delete CashOrder //
 export const deleteCashOrderThunk = createAsyncThunk(
-  'user/deleteCashOrderThunk',
+  'cashorders/deleteCashOrderThunk',
   async (id, thunkAPI) => {
     try {
       const response = await customFetch.delete(`/cashorders/${id}`)
@@ -31,6 +32,20 @@ export const deleteCashOrderThunk = createAsyncThunk(
       thunkAPI.dispatch(cashordersThunk())
 
       return response.data.msg
+    } catch (error) {
+      console.log(error.response)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+// Get Single CashOrder //
+export const GetSingleCashOrderThunk = createAsyncThunk(
+  'user/deleteCashOrderThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await customFetch.get(`/cashorders/${id}`)
+
+      return response.data.cashOrder
     } catch (error) {
       console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -68,6 +83,19 @@ const cashordersSlice = createSlice({
       state.isLoading = false
     },
     [deleteCashOrderThunk.rejected]: (state, { payload }) => {
+      toast.error(payload)
+      state.isLoading = false
+    },
+    // ====Get Single CashOrder=====
+    [GetSingleCashOrderThunk.pending]: (state, { payload }) => {
+      state.isLoading = true
+    },
+    [GetSingleCashOrderThunk.fulfilled]: (state, { payload }) => {
+      state.SingleCashOrder = payload
+
+      state.isLoading = false
+    },
+    [GetSingleCashOrderThunk.rejected]: (state, { payload }) => {
       toast.error(payload)
       state.isLoading = false
     },

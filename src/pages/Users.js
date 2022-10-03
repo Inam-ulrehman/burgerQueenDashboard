@@ -5,19 +5,13 @@ import UsersBasic from '../components/UsersBasic'
 import { formatDate } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import AlertDialog from '../components/Cards/AlertDialog'
 import { deleteUserThunk } from '../features/user/userSlice'
 import { Link } from 'react-router-dom'
 
 const Users = () => {
   const { user } = useSelector((state) => state)
-
   const dispatch = useDispatch()
-
-  const handleEdit = (e) => {
-    console.log(e)
-  }
 
   return (
     <Wrapper className='tableHolder'>
@@ -47,8 +41,6 @@ const Users = () => {
                 <td>{formatDate(item.createdAt)}</td>
                 <td>{formatDate(item.updatedAt)}</td>
                 <td className='icons'>
-                  <EditOutlinedIcon onClick={() => handleEdit(_id)} />
-
                   <AlertDialog
                     content={'Do you really want to delete ?'}
                     title={'Alert'}
@@ -56,7 +48,7 @@ const Users = () => {
                     action={() => dispatch(deleteUserThunk(_id))}
                   />
                   <Link to={`/users/${_id}`}>
-                    <InfoOutlinedIcon />
+                    <EditOutlinedIcon />
                   </Link>
                 </td>
               </tr>

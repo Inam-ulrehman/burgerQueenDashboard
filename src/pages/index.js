@@ -9,7 +9,9 @@ import Users from './Users'
 import Test from './Test'
 import SingleUser from './SingleUser'
 import SingleContact from './SingleContact'
+import SingleCashOrder from './SingleCashOrder'
 export {
+  SingleCashOrder,
   SingleContact,
   SharedLayout,
   LandingPage,

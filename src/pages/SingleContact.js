@@ -1,13 +1,16 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import AlertDialog from '../components/Cards/AlertDialog'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import {
   changeRead,
   getSingleContactUsThunk,
   changeResolve,
   getContactUsValue,
   updateSingleContactUsThunk,
+  deleteContactUsThunk,
 } from '../features/contact/contactSlice'
 import { formatDate } from '../utils/helper'
 
@@ -44,6 +47,16 @@ const SingleContact = () => {
   }
   return (
     <div>
+      {/* Button Delete and Go Back */}
+      <div>
+        <AlertDialog
+          content={'Do you really want to delete ?'}
+          title={'Alert'}
+          buttonText={<DeleteOutlineOutlinedIcon />}
+          action={() => dispatch(deleteContactUsThunk(id))}
+        />
+        <Link to={'/contact'}>contact</Link>
+      </div>
       <form className='form' onSubmit={handleSubmit}>
         {/* created AT . created By */}
         <div>

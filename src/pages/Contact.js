@@ -4,18 +4,12 @@ import { ContactBasic } from '../components'
 import { formatDate } from '../utils/helper'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import AlertDialog from '../components/Cards/AlertDialog'
 import { deleteContactUsThunk } from '../features/contact/contactSlice'
 import { Link } from 'react-router-dom'
 const Contact = () => {
   const { contact } = useSelector((state) => state)
   const dispatch = useDispatch()
-
-  const handleEdit = (e) => {
-    console.log(e.target)
-    console.log('Edit')
-  }
 
   return (
     <Wrapper>
@@ -42,7 +36,6 @@ const Contact = () => {
                   <td>{item.message}</td>
                   <td>{formatDate(item.createdAt)}</td>
                   <td className='icons'>
-                    <EditOutlinedIcon onClick={(e) => handleEdit(e)} />
                     <AlertDialog
                       content={'Do you really want to delete ?'}
                       title={'Alert'}
@@ -50,7 +43,7 @@ const Contact = () => {
                       action={() => dispatch(deleteContactUsThunk(item._id))}
                     />
                     <Link to={`/contact/${item._id}`}>
-                      <InfoOutlinedIcon />
+                      <EditOutlinedIcon />
                     </Link>
                   </td>
                 </tr>
