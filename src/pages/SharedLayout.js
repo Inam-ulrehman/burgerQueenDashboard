@@ -19,13 +19,7 @@ const SharedLayout = () => {
     dispatch(productsThunk())
     // eslint-disable-next-line
   }, [])
-  if (onlineorders.isLoading) {
-    return (
-      <div>
-        <div className='loading'></div>
-      </div>
-    )
-  }
+
   return (
     <main>
       <ResponsiveDrawer />
