@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { contactThunk } from '../features/contact/contactSlice'
 import ResponsiveDrawer from '../components/Navbar/ResponsiveDrawer'
 import { userThunk } from '../features/user/userSlice'
@@ -9,7 +9,6 @@ import { productsThunk } from '../features/products/productsSlice'
 
 const SharedLayout = () => {
   const dispatch = useDispatch()
-  const { onlineorders } = useSelector((state) => state)
 
   useEffect(() => {
     dispatch(contactThunk())

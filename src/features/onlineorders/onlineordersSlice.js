@@ -3,6 +3,7 @@ import { customFetch } from '../../utils/axios'
 import { toast } from 'react-toastify'
 const initialState = {
   orders: [],
+  singleOnlineOrder: [],
   count: '',
   isLoading: true,
 }
@@ -28,10 +29,9 @@ export const deleteOnlineOrderThunk = createAsyncThunk(
       const response = await customFetch.delete(`onlineorders/${id}`)
 
       thunkAPI.dispatch(onlineordersThunk())
-      console.log(response)
+
       return response.data.msg
     } catch (error) {
-      console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
@@ -41,13 +41,10 @@ export const getSingleOnlineOrderThunk = createAsyncThunk(
   'onlineorders/getSingleOnlineOrderThunk',
   async (id, thunkAPI) => {
     try {
-      console.log('thunkApi')
-      // const response = await customFetch.get(`onlineorders/${id}`)
+      const response = await customFetch.get(`onlineorders/${id}`)
 
-      // console.log(response)
-      // return response.data.msg
+      return response.data.msg
     } catch (error) {
-      console.log(error.response)
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
@@ -91,6 +88,7 @@ const onlineordersSlice = createSlice({
       state.isLoading = true
     },
     [getSingleOnlineOrderThunk.fulfilled]: (state, { payload }) => {
+      state.singleOnlineOrder = payload
       state.isLoading = false
     },
     [getSingleOnlineOrderThunk.rejected]: (state, { payload }) => {
