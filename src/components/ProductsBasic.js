@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import ProductsBasicRechart from './ProductsBasicRechart'
 
 const ProductsBasic = () => {
-  const { products } = useSelector((state) => state)
+  const { product } = useSelector((state) => state)
   return (
     <div>
-      <p>Total products: {products.count}</p>
+      <p>Total products: {product?.nbHits}</p>
       <ProductsBasicRechart />
     </div>
   )

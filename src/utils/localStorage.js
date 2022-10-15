@@ -12,3 +12,18 @@ export const getUserFromLocalStorage = () => {
 export const removeUserFromLocalStorage = () => {
   localStorage.removeItem('user')
 }
+
+// =======Product=========image==========
+export const setImageInLocalStorage = (image) => {
+  localStorage.setItem('image', JSON.stringify(image))
+}
+
+export const getImageFromLocalStorage = () => {
+  const result = localStorage.getItem('image')
+  const image = result ? JSON.parse(result) : null
+  return image
+}
+
+export const removeImageFromLocalStorage = () => {
+  localStorage.removeItem('image')
+}

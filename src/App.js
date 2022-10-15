@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { ProtectedRoute } from './components'
+import SingleProduct from './components/SingleProduct'
 import {
   SharedLayout,
   LandingPage,
@@ -13,11 +14,10 @@ import {
   OnlineOrders,
   Users,
   SingleUser,
-  Products,
   Test,
   SingleCashOrder,
-  SingleProduct,
   SingleOnlineOrder,
+  Product,
 } from './pages'
 
 const App = () => {
@@ -42,8 +42,8 @@ const App = () => {
           <Route path='onlineOrders/:id' element={<SingleOnlineOrder />} />
           <Route path='users' element={<Users />} />
           <Route path='users/:id' element={<SingleUser />} />
-          <Route path='products' element={<Products />} />
-          <Route path='products/:id' element={<SingleProduct />} />
+          <Route path='product' element={<Product />} />
+          <Route path='product/:Id' element={<SingleProduct />} />
           <Route path='test' element={<Test />} />
         </Route>
       </Routes>

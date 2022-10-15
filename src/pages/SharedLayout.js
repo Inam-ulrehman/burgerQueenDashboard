@@ -5,7 +5,7 @@ import ResponsiveDrawer from '../components/Navbar/ResponsiveDrawer'
 import { userThunk } from '../features/user/userSlice'
 import { cashordersThunk } from '../features/cashorders/cashordersSlice'
 import { onlineordersThunk } from '../features/onlineorders/onlineordersSlice'
-import { productsThunk } from '../features/products/productsSlice'
+import { productThunk } from '../features/product/productSlice'
 
 const SharedLayout = () => {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const SharedLayout = () => {
     dispatch(userThunk())
     dispatch(cashordersThunk())
     dispatch(onlineordersThunk())
-    dispatch(productsThunk())
+    dispatch(productThunk())
     // eslint-disable-next-line
   }, [])
 

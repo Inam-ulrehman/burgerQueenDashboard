@@ -13,9 +13,9 @@ import styled from 'styled-components'
 import useWindowDimensions from './hooks/WindowsWidth'
 
 const ProductsBasicRechart = () => {
-  const { products } = useSelector((state) => state)
+  const { product } = useSelector((state) => state)
   let { width } = useWindowDimensions()
-  const data = products.productsList
+  const data = product.products
     .map((name) => {
       return { name: name.category, Total: name.category.length }
     })

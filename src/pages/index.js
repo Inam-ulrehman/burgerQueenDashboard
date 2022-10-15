@@ -3,14 +3,13 @@ import Contact from './Contact'
 import ErrorPage from './ErrorPage'
 import LandingPage from './LandingPage'
 import OnlineOrders from './OnlineOrders'
-import Products from './Products'
+import Product from './Product'
 import SharedLayout from './SharedLayout'
 import Users from './Users'
 import Test from './Test'
 import SingleUser from './SingleUser'
 import SingleContact from './SingleContact'
 import SingleCashOrder from './SingleCashOrder'
-import SingleProduct from './SingleProduct'
 import SingleOnlineOrder from './SingleOnlineOrder'
 export {
   SingleCashOrder,
@@ -23,8 +22,7 @@ export {
   OnlineOrders,
   SingleOnlineOrder,
   Users,
-  Products,
-  SingleProduct,
+  Product,
   Test,
   SingleUser,
 }
