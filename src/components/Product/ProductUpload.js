@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { customFetch } from '../utils/axios'
-import { removeImageFromLocalStorage } from '../utils/localStorage'
+import { customFetch } from '../../utils/axios'
+import { removeImageFromLocalStorage } from '../../utils/localStorage'
 import ProductInputHolder from './ProductInputHolder'
 const ProductUpload = ({ data, setShow, fetchData, setFetchData }) => {
   const initialState = {

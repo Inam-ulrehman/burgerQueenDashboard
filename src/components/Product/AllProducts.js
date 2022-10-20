@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   deleteImageAndProductThunk,
   productThunk,
-} from '../features/product/productSlice'
+} from '../../features/product/productSlice'
 
 const AllProducts = ({ fetchData }) => {
   const dispatch = useDispatch()

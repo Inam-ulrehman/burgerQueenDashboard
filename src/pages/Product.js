@@ -2,8 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
-import AllProducts from '../components/AllProducts'
-import ProductUpload from '../components/ProductUpload'
+import AllProducts from '../components/Product/AllProducts'
+import ProductUpload from '../components/Product/ProductUpload'
 import { customFetch } from '../utils/axios'
 
 import {

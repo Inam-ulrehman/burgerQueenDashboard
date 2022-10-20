@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { ProtectedRoute } from './components'
-import SingleProduct from './components/SingleProduct'
+import { SingleProduct } from './components/Product'
 import {
   SharedLayout,
   LandingPage,

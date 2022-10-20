@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { customFetch } from '../utils/axios'
-import SingleProductInputHolder from './SingleProductInputHolder'
+import { customFetch } from '../../utils/axios'
+import { SingleProductInputHolder } from '.'
 
 const SingleProduct = () => {
   const param = useParams()
