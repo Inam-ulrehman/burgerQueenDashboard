@@ -6,10 +6,23 @@ const UsersBasic = () => {
   const { user } = useSelector((state) => state)
   return (
     <Wrapper>
-      <p>Total RegisterUsers: {user.count}</p>
+      Total RegisterUsers:
+      <span>{user.count}</span>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-7);
+  color: white;
+  box-shadow: var(--shadow-2);
+  margin: 1rem;
+  padding: 1rem;
+  span {
+    margin-left: 1rem;
+  }
+`
 export default UsersBasic

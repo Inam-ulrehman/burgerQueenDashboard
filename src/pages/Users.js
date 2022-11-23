@@ -59,5 +59,10 @@ const Users = () => {
     </Wrapper>
   )
 }
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  .icons {
+    display: flex;
+    border: transparent;
+  }
+`
 export default Users

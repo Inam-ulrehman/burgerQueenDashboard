@@ -65,7 +65,14 @@ const Wrapper = styled.div`
   }
   .recharts-surface {
   }
-  border: 2px solid black;
+  box-shadow: var(--shadow-3);
+  padding: 1rem;
+  span {
+    background-color: var(--primary-7);
+    padding: 1rem;
+    color: var(--white);
+  }
+  background-color: var(--white);
 `
 
 export default OrdersPieChart

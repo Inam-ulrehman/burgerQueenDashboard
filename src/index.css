@@ -286,3 +286,7 @@ svg:hover {
   padding: 2rem 1rem;
   text-align: center;
 }
+.icons {
+  display: flex;
+  border: transparent;
+}
